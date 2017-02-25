@@ -9,7 +9,11 @@
 
 makeCacheMatrix <- function(x = numeric()) {
   m <- NULL
-  set <- function(new_val) x <- new_val
+  set <- function(new_val) {
+    x <<- new_val
+    m <<- NULL
+  }
+  
   get <- function() x
   getsolve <- function() m 
   setsolve <- function(new_val) m <<- solve(new_val)
@@ -29,6 +33,7 @@ cacheSolve <- function(x, ...) {
   }
   data <- x$get()
   m <- x$setsolve(data,...)
+  
   m
 }
 
